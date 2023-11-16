@@ -1,11 +1,9 @@
-package lista02.view;
+package lista.view;
 
-import lista02.controller.Controller;
-import lista02.model.Banco;
+import lista.controller.Controller;
+import lista.model.Banco;
 
 import javax.swing.*;
-import java.util.ArrayList;
-import java.util.Objects;
 
 public class Cadastro {
     private JPanel panel1;

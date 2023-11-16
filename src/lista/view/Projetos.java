@@ -1,10 +1,6 @@
-package lista02.view;
-
-import lista02.model.Banco;
+package lista.view;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class Projetos {
     private JPanel panel1;

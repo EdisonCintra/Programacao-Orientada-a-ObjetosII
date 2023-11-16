@@ -1,4 +1,4 @@
-package lista02.model;
+package lista.model;
 
 public class Projeto {
     String evento;

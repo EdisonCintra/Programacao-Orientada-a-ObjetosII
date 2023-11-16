@@ -1,4 +1,4 @@
-package lista02.model;
+package lista.model;
 
 import javax.swing.*;
 import java.sql.*;
@@ -26,7 +26,7 @@ public class Banco {
         try {
             this.con = DriverManager.getConnection(url, user, pass);
         } catch (SQLException e) {
-            System.out.println("n foi");
+            System.out.println("Não Foi Possível Conectar ao Banco de Dados");
             e.printStackTrace();
         }
     }
@@ -42,7 +42,7 @@ public class Banco {
             return !rs.next();
 
         } catch (SQLException e) {
-            System.out.println("Erro na consulta");
+            System.out.println("Erro ao consultar");
             return false;
         }
     }
@@ -76,7 +76,7 @@ public class Banco {
             return rs.next();
 
         } catch (SQLException e) {
-            System.out.println("Errou");
+            System.out.println("Error");
             return false;
         }
     }
@@ -95,38 +95,12 @@ public class Banco {
             }
 
         } catch (SQLException e) {
-            System.out.println("Erro");
+            System.out.println("Error");
         }
         return name;
     }
 
-    public void salvarProjeto(String evento, String cpf, String coordenador, String campus, String titulo,
-                              String estudante, String matricula, String banco, String contacorrente, String agencia, String celular,
-                              String email) {
-        try {
-            Connection connection = this.getCon();
-            String sql = "INSERT INTO projetos (evento, cpf, coordenador, campus, titulo, estudante, matricula, "
-                    + "banco, contacorrente, agencia, celular, email) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-            PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setString(1, evento);
-            statement.setString(2, cpf);
-            statement.setString(3, coordenador);
-            statement.setString(4, campus);
-            statement.setString(5, titulo);
-            statement.setString(6, estudante);
-            statement.setString(7, matricula);
-            statement.setString(8, banco);
-            statement.setString(9, contacorrente);
-            statement.setString(10, agencia);
-            statement.setString(11, celular);
-            statement.setString(12, email);
-            statement.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Projeto cadastrado com sucesso!");
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Erro ao cadastrar projeto. \nTente novamente mais tarde.");
-            e.printStackTrace();
-        }
-    }
+
 
 
 

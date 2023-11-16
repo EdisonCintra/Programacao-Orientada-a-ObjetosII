@@ -1,10 +1,8 @@
-package lista02.view;
+package lista.view;
 
-import lista02.model.Banco;
+import lista.model.Banco;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class Principal {
     private JButton sairButton;

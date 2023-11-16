@@ -1,7 +1,6 @@
-package lista02.view;
+package lista.view;
 
-import lista02.controller.Controller;
-import lista02.model.Banco;
+import lista.controller.Controller;
 
 import javax.swing.*;
 

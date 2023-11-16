@@ -1,7 +1,7 @@
-package lista02.controller;
-import lista02.model.Banco;
-import lista02.view.Login;
-import lista02.view.Principal;
+package lista.controller;
+import lista.model.Banco;
+import lista.view.Login;
+import lista.view.Principal;
 
 import javax.swing.*;
 import java.util.ArrayList;

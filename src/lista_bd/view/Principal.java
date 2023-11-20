@@ -11,7 +11,7 @@ public class Principal {
     private JMenuItem cadastrar;
     private JMenuBar menuBar;
     private JMenu gestao;
-    private JMenu produtos;
+    private JMenu projetos;
     private JMenuBar jmenu;
     String name;
 

@@ -6,28 +6,29 @@ public class Projeto {
     String campus;
     String titulo;
     String estudante;
-    String n_matricula;
+    String matricula;
     String cpf;
-    String n_banco;
-    String conta_corrente;
+    String banco;
+    String contacorrente;
     String agencia;
     String celular;
-    String mail;
+    String email;
 
-    public Projeto(String evento, String coordenador, String campus, String titulo, String estudante, String n_matricula, String cpf, String n_banco, String conta_corrente, String agencia, String celular, String mail) {
+    public Projeto(String evento, String coordenador, String campus, String titulo, String estudante, String matricula, String cpf, String banco, String contacorrente, String agencia, String celular, String email) {
         this.evento = evento;
         this.coordenador = coordenador;
         this.campus = campus;
         this.titulo = titulo;
         this.estudante = estudante;
-        this.n_matricula = n_matricula;
+        this.matricula = matricula;  // Corrigido aqui
         this.cpf = cpf;
-        this.n_banco = n_banco;
-        this.conta_corrente = conta_corrente;
+        this.banco = banco;  // Corrigido aqui
+        this.contacorrente = contacorrente;  // Corrigido aqui
         this.agencia = agencia;
         this.celular = celular;
-        this.mail = mail;
+        this.email = email;  // Corrigido aqui
     }
+
 
     public String getEvento() {
         return evento;
@@ -70,11 +71,11 @@ public class Projeto {
     }
 
     public String getN_matricula() {
-        return n_matricula;
+        return matricula;
     }
 
-    public void setN_matricula(String n_matricula) {
-        this.n_matricula = n_matricula;
+    public void setN_matricula(String matricula) {
+        this.matricula = Projeto.this.matricula;
     }
 
     public String getCpf() {
@@ -86,19 +87,19 @@ public class Projeto {
     }
 
     public String getN_banco() {
-        return n_banco;
+        return banco;
     }
 
-    public void setN_banco(String n_banco) {
-        this.n_banco = n_banco;
+    public void setN_banco(String banco) {
+        this.banco = Projeto.this.banco;
     }
 
     public String getConta_corrente() {
-        return conta_corrente;
+        return contacorrente;
     }
 
-    public void setConta_corrente(String conta_corrente) {
-        this.conta_corrente = conta_corrente;
+    public void setConta_corrente(String contacorrente) {
+        this.contacorrente = Projeto.this.contacorrente;
     }
 
     public String getAgencia() {
@@ -118,10 +119,36 @@ public class Projeto {
     }
 
     public String getMail() {
-        return mail;
+        return email;
     }
 
-    public void setMail(String mail) {
-        this.mail = mail;
+    public void setMail(String email) {
+        this.email = Projeto.this.email;
     }
+
+
+
+
+    public String getMatricula() {
+        return matricula;
+    }
+
+
+
+    public String getBanco() {
+        return matricula;
+    }
+
+
+    public String getContaCorrente() {
+        return contacorrente;
+    }
+
+
+
+    public String getEmail() {
+        return email;
+    }
+
+
 }

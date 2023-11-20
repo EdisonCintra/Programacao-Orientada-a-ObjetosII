@@ -1,4 +1,4 @@
-package lista.model;
+package lista_bd.model;
 
 public class ProjetoDB {
 }

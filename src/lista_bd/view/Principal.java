@@ -1,6 +1,6 @@
-package lista.view;
+package lista_bd.view;
 
-import lista.model.Banco;
+import lista_bd.model.Banco;
 
 import javax.swing.*;
 

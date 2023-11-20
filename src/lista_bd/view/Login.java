@@ -1,6 +1,6 @@
-package lista.view;
+package lista_bd.view;
 
-import lista.controller.Controller;
+import lista_bd.controller.Controller;
 
 import javax.swing.*;
 

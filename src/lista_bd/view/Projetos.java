@@ -56,6 +56,13 @@ public class Projetos {
                 adicionarProjetoAoJList();
             }
         });
+
+        limparBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                limparCampos();
+            }
+        });
     }
 
 
@@ -114,5 +121,20 @@ public class Projetos {
         }
 
         list1.setModel(listModel);
+    }
+
+    private void limparCampos() {
+        evento.setText("");
+        cpf.setText("");
+        coordenador.setText("");
+        campus.setText("");
+        titulo.setText("");
+        estudante.setText("");
+        matricula.setText("");
+        banco.setText("");
+        contacorrente.setText("");
+        agencia.setText("");
+        celular.setText("");
+        email.setText("");
     }
 }

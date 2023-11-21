@@ -7,10 +7,10 @@ import javax.swing.*;
 
 public class Cadastro {
     private JPanel panel1;
-    private JTextField tf_name;
-    private JTextField tf_username;
-    private JPasswordField tf_pass;
-    private JPasswordField tf_rpass;
+    private JTextField tfname;
+    private JTextField tfusername;
+    private JPasswordField tfpass;
+    private JPasswordField tfRpass;
     private JButton cadastrarButton;
     private JButton limparButton;
     private JButton voltarButton;
@@ -27,21 +27,21 @@ public class Cadastro {
         Controller controller = new Controller();
 
         cadastrarButton.addActionListener(e -> {
-            boolean cadastro = controller.CadastroUsuario(tf_name.getText(),tf_username.getText(), new String(tf_pass.getPassword()),new String(tf_rpass.getPassword()));
+            boolean cadastro = controller.CadastroDeUsuario(tfname.getText(),tfusername.getText(), new String(tfpass.getPassword()),new String(tfRpass.getPassword()));
             if (cadastro){
-                tf_name.setText(null);
-                tf_username.setText(null);
-                tf_pass.setText(null);
-                tf_rpass.setText(null);
+                tfname.setText(null);
+                tfusername.setText(null);
+                tfpass.setText(null);
+                tfRpass.setText(null);
             }
 
         });
 
         limparButton.addActionListener(e -> {
-            tf_name.setText(null);
-            tf_username.setText(null);
-            tf_pass.setText(null);
-            tf_rpass.setText(null);
+            tfname.setText(null);
+            tfusername.setText(null);
+            tfpass.setText(null);
+            tfRpass.setText(null);
         });
 
         voltarButton.addActionListener(e -> {

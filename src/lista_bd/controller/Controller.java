@@ -10,7 +10,7 @@ import java.util.Objects;
 public class Controller {
     Banco db = Banco.getInstance();
     public boolean LoginAutentic(String user, String pass){
-        if (db.autentic(user, pass)){
+        if (db.autenticacao(user, pass)){
             new Principal(user);
             return true;
         } else {
@@ -19,11 +19,11 @@ public class Controller {
         return false;
     }
 
-    public boolean CadastroValid(String name, String username, String pass, String rpass){
+    public boolean CadastroValidacao(String name, String username, String pass, String rpass){
         ArrayList<String> usuario = new ArrayList<String>();
         usuario.add(name); usuario.add(username); usuario.add(pass); usuario.add(rpass);
 
-        boolean valid_user = db.validUsername(username);
+        boolean valid_user = db.validarUsername(username);
         boolean valid_pass = Objects.equals(pass, rpass);
         boolean valid_empty = true;
         for (String u : usuario) {
@@ -42,8 +42,8 @@ public class Controller {
         return valid_user && valid_pass && valid_empty;
     }
 
-    public boolean CadastroUsuario(String name, String username, String pass, String rpass){
-        if (CadastroValid(name, username, pass, rpass)) {
+    public boolean CadastroDeUsuario(String name, String username, String pass, String rpass){
+        if (CadastroValidacao(name, username, pass, rpass)) {
             db.Cadastro(name, username, pass);
             return true;
         }

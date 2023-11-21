@@ -20,13 +20,13 @@ public class Projeto {
         this.campus = campus;
         this.titulo = titulo;
         this.estudante = estudante;
-        this.matricula = matricula;  // Corrigido aqui
+        this.matricula = matricula;
         this.cpf = cpf;
-        this.banco = banco;  // Corrigido aqui
-        this.contacorrente = contacorrente;  // Corrigido aqui
+        this.banco = banco;
+        this.contacorrente = contacorrente;
         this.agencia = agencia;
         this.celular = celular;
-        this.email = email;  // Corrigido aqui
+        this.email = email;
     }
 
 

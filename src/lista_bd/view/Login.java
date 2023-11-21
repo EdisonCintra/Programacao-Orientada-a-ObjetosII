@@ -6,11 +6,12 @@ import javax.swing.*;
 
 public class Login {
     private JPanel panel1;
-    private JTextField tf_user;
-    private JPasswordField tf_pass;
+    private JTextField tfuser
+            ;
+    private JPasswordField tfpass;
     private JButton entrarButton;
     private JButton limparButton;
-    private JButton btn_register;
+    private JButton btnRegister;
 
     public Login() {
         JFrame frame = new JFrame("Login");
@@ -23,20 +24,22 @@ public class Login {
         Controller controller = new Controller();
 
 
-        btn_register.addActionListener(e -> {
+        btnRegister.addActionListener(e -> {
             new Cadastro();
             frame.dispose();
         });
 
         entrarButton.addActionListener(e ->{
-            if (controller.LoginAutentic(tf_user.getText(), new String (tf_pass.getPassword()))){
+            if (controller.LoginAutentic(tfuser
+                    .getText(), new String (tfpass.getPassword()))){
                 frame.dispose();
             }
         });
 
         limparButton.addActionListener(e ->{
-            tf_user.setText(null);
-            tf_pass.setText(null);
+            tfuser
+                    .setText(null);
+            tfpass.setText(null);
         });
     }
 }

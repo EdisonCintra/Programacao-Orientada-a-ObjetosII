@@ -33,7 +33,7 @@ public class Banco {
         }
     }
 
-    public boolean validUsername(String username) {
+    public boolean validarUsername(String username) {
         Banco db = Banco.getInstance();
         Connection connection = db.getCon();
 
@@ -66,7 +66,7 @@ public class Banco {
         }
     }
 
-    public boolean autentic(String user, String pass) {
+    public boolean autenticacao(String user, String pass) {
         Banco db = Banco.getInstance();
         Connection connection = db.getCon();
 
@@ -83,7 +83,7 @@ public class Banco {
         }
     }
 
-    public String user_name(String user) {
+    public String username(String user) {
         Banco db = Banco.getInstance();
         Connection connection = db.getCon();
         String name = null;
@@ -115,7 +115,6 @@ public class Banco {
         Connection connection = db.getCon();
 
         try {
-            // Verificar se algum campo está vazio
             if (camposEstaoVazios(evento, cpf, coordenador, campus, titulo, estudante, matricula, banco, contacorrente, agencia, celular, email)) {
                 JOptionPane.showMessageDialog(null, "Preencha todos os campos antes de cadastrar");
                 return;
@@ -137,7 +136,6 @@ public class Banco {
             statement.setString(11, celular);
             statement.setString(12, email);
 
-            // Executar a inserção no banco de dados
             statement.executeUpdate();
             JOptionPane.showMessageDialog(null, "Projeto cadastrado com sucesso");
         } catch (SQLException e) {
@@ -192,7 +190,6 @@ public class Banco {
                 }
             }
 
-            //System.out.println("Projetos obtidos do banco de dados: " + projetos); => so pra saber se está adicionando no Banco
         } catch (SQLException e) {
             System.out.println("Erro ao obter projetos do banco de dados");
             e.printStackTrace();
@@ -230,7 +227,6 @@ public class Banco {
             ResultSet rs = statement.executeQuery();
 
             if (rs.next()) {
-                // Obter os dados do projeto do ResultSet
                 String evento = rs.getString("evento");
                 String cpf = rs.getString("cpf");
                 String coordenador = rs.getString("coordenador");
@@ -244,7 +240,6 @@ public class Banco {
                 String celular = rs.getString("celular");
                 String email = rs.getString("email");
 
-                // Criar e retornar um objeto Projeto com os dados
                 return new Projeto(evento, cpf, coordenador, campus, tituloProjeto,
                         estudante, matricula, banco, contacorrente, agencia, celular, email );
             }
@@ -259,14 +254,10 @@ public class Banco {
         Connection connection = getInstance().getCon();
 
         try {
-            // Verificar se algum campo obrigatório está nulo ou vazio
             if (projeto.getMatricula() == null || projeto.getMatricula().isEmpty()) {
                 throw new IllegalArgumentException("Matrícula não pode ser nula ou vazia");
             }
 
-            // Adicione verificações para outros campos obrigatórios, se necessário
-
-            // Restante do código para atualização
             String sql = "UPDATE projetos SET evento = ?, cpf = ?, coordenador = ?, campus = ?, " +
                     "titulo = ?, estudante = ?, matricula = ?, banco = ?, " +
                     "contacorrente = ?, agencia = ?, celular = ?, email = ? WHERE titulo = ?";
@@ -278,16 +269,14 @@ public class Banco {
             statement.setString(5, projeto.getTitulo());
             statement.setString(6, projeto.getEstudante());
             statement.setString(7, projeto.getMatricula());
-            statement.setString(8, projeto.getBanco());  // Corrigido aqui
+            statement.setString(8, projeto.getBanco());
             statement.setString(9, projeto.getContaCorrente());
             statement.setString(10, projeto.getAgencia());
             statement.setString(11, projeto.getCelular());
             statement.setString(12, projeto.getEmail());
 
-            // Condição WHERE
             statement.setString(13, projeto.getTitulo());
 
-            // Executar a atualização no banco de dados
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -296,12 +285,12 @@ public class Banco {
 
 
 
+
     public List<String> pesquisarProjetos(String termoPesquisa) {
         List<String> projetosPesquisados = new ArrayList<>();
         Connection connection = getInstance().getCon();
 
         try {
-            // Utilize a cláusula WHERE para buscar projetos que contenham o termo de pesquisa no título
             String sql = "SELECT titulo FROM projetos WHERE titulo LIKE ?";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, "%" + termoPesquisa + "%");

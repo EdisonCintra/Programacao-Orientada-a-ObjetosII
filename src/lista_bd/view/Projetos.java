@@ -50,7 +50,7 @@ public class Projetos {
 
 
 
-        JList<String> list1;  // Certifique-se de usar JList<String> para especificar o tipo de dados
+        JList<String> list1;
 
 
         JFrame frame = new JFrame("Projetos");
@@ -134,7 +134,6 @@ public class Projetos {
         String emailText = email.getText();
 
 
-        // Imprimir os valores dos campos para verificar
         System.out.println("Evento: " + eventoText);
         System.out.println("CPF: " + cpfText);
         System.out.println("Coordenador: " + coordenadorText);
@@ -148,7 +147,6 @@ public class Projetos {
         System.out.println("Celular: " + celularText);
         System.out.println("Email: " + emailText);
 
-        // Chamar o método de cadastro no banco de dados para projetos
         Banco.getInstance().CadastroProjeto(
                 eventoText, cpfText, coordenadorText, campusText,
                 tituloText, estudanteText, matriculaText,
@@ -156,7 +154,6 @@ public class Projetos {
                 celularText, emailText
         );
 
-        // Atualizar a JList com os projetos
         atualizarJList();
     }
 
@@ -165,19 +162,15 @@ public class Projetos {
     // ...
 
     private void atualizarJList() {
-        // Obter a lista de projetos do banco de dados
         List<String> projetos = Banco.getInstance().getProjetosFromDB();
 
-        // Filtrar valores vazios
         projetos = projetos.stream().filter(s -> !s.isEmpty()).collect(Collectors.toList());
 
-        // Atualizar a JList com os dados obtidos
         DefaultListModel<String> listModel = new DefaultListModel<>();
         for (String projeto : projetos) {
             listModel.addElement(projeto);
         }
 
-        // Definir os dados diretamente na JList
         list1.setModel(listModel);
         list1.revalidate();
         list1.repaint();
@@ -185,20 +178,15 @@ public class Projetos {
 
 
     private void excluirProjetoDoJList() {
-        // Obtém o índice do item selecionado
         int selectedIndex = list1.getSelectedIndex();
 
-        if (selectedIndex != -1) { // Verifica se um item está selecionado
-            // Obtém o modelo da lista
+        if (selectedIndex != -1) {
             DefaultListModel<String> listModel = (DefaultListModel<String>) list1.getModel();
 
-            // Obtém o item selecionado
             String projetoSelecionado = listModel.getElementAt(selectedIndex);
 
-            // Remove o item do JList
             listModel.removeElementAt(selectedIndex);
 
-            // Remove o item do banco de dados
             Banco.getInstance().excluirProjeto(projetoSelecionado);
         } else {
             JOptionPane.showMessageDialog(null, "Selecione um projeto para excluir.");
@@ -228,20 +216,16 @@ public class Projetos {
 
 
     private void editarProjeto() {
-        // Obtém o índice do item selecionado
         int selectedIndex = list1.getSelectedIndex();
 
-        if (selectedIndex != -1) { // Verifica se um item está selecionado
-            // Obtém o modelo da lista
+        if (selectedIndex != -1) {
             DefaultListModel<String> listModel = (DefaultListModel<String>) list1.getModel();
 
-            // Obtém o item selecionado
+
             String projetoSelecionado = listModel.getElementAt(selectedIndex);
 
-            // Obtém os detalhes do projeto
             Projeto projeto = Banco.getInstance().getDetalhesProjeto(projetoSelecionado);
 
-            // Preenche os campos do formulário com os detalhes do projeto
             preencherCampos(projeto);
         } else {
             JOptionPane.showMessageDialog(null, "Selecione um projeto para editar.");
@@ -264,7 +248,6 @@ public class Projetos {
     }
 
     private void atualizarProjeto() {
-        // Obter os dados dos campos JTextField
         String eventoText = evento.getText();
         String cpfText = cpf.getText();
         String coordenadorText = coordenador.getText();
@@ -278,13 +261,11 @@ public class Projetos {
         String celularText = celular.getText();
         String emailText = email.getText();
 
-        // Validar se a matrícula não é nula ou vazia
         if (matriculaText == null || matriculaText.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Matrícula não pode ser nula ou vazia");
-            return; // Encerrar o método se a matrícula for inválida
+            return;
         }
 
-        // Criar um objeto Projeto com base nos campos do formulário
         Projeto projetoAtualizado = new Projeto(
                 eventoText, cpfText, coordenadorText, campusText,
                 tituloText, estudanteText, matriculaText,
@@ -292,11 +273,9 @@ public class Projetos {
                 celularText, emailText
         );
 
-        // Atualizar o projeto no banco de dados
         try {
             Banco.getInstance().atualizarProjeto(projetoAtualizado);
 
-            // Atualizar a JList com os projetos
             atualizarJList();
         } catch (IllegalArgumentException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
@@ -305,40 +284,31 @@ public class Projetos {
     }
 
     private void listarProjetos() {
-        // Obter a lista de projetos do banco de dados
         List<String> projetos = Banco.getInstance().getProjetosFromDB();
 
-        // Atualizar a JList com os projetos
         atualizarJList(projetos);
     }
 
 
     private void atualizarJList(List<String> projetos) {
-        // Filtrar valores vazios
         projetos = projetos.stream().filter(s -> !s.isEmpty()).collect(Collectors.toList());
 
-        // Atualizar a JList com os dados obtidos
         DefaultListModel<String> listModel = new DefaultListModel<>();
         for (String projeto : projetos) {
             listModel.addElement(projeto);
         }
 
-        // Definir os dados diretamente na JList
         list1.setModel(listModel);
         list1.revalidate();
         list1.repaint();
     }
 
     private void pesquisarProjetos() {
-        // Obter o texto da pesquisa
         String termoPesquisa = txtPesquisa.getText().trim();
 
-        // Verificar se o termo de pesquisa não está vazio
         if (!termoPesquisa.isEmpty()) {
-            // Obter a lista de projetos do banco de dados que correspondem à pesquisa
             List<String> projetosPesquisados = Banco.getInstance().pesquisarProjetos(termoPesquisa);
 
-            // Atualizar a JList com os projetos pesquisados
             atualizarJList(projetosPesquisados);
         }
     }
